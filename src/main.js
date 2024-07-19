@@ -15,10 +15,18 @@ form.addEventListener('submit', event => {
   event.preventDefault();
   gallery.innerHTML = '';
   if (searchLine.value === '') {
-    alert('Please fill out this field');
-  }
+    iziToast.show({
+      message: 'Please fill out this field',
+      messageColor: '#FAFAFB',
+      messageSize: '16px',
+      messageLineHeight: '24px',
+      backgroundColor: '#EF4040',
+      position: 'topRight',
+      maxWidth: '432px',
+    });
+  };
   loader.style.display = 'block';
-  sendRequest(searchLine.value).then(images => {
+  sendRequest(searchLine.value.trim()).then(images => {
     loader.style.display = 'none';
     if (images.length === 0) {
       iziToast.show({
